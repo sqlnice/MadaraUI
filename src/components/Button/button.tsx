@@ -4,7 +4,7 @@ import classNames from 'classnames';
 export type ButtonSize = 'lg' | 'sm';
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link';
 
-interface BaseButtonProps {
+interface IBaseButtonProps {
   className?: string;
   disabled?: boolean;
   size?: string;
@@ -13,8 +13,8 @@ interface BaseButtonProps {
   href?: string;
 }
 
-type NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>;
-type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>;
+type NativeButtonProps = IBaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>;
+type AnchorButtonProps = IBaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>;
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
 const Button: React.FC<ButtonProps> = (props) => {
