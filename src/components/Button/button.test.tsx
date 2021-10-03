@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Button, { ButtonProps, ButtonType, ButtonSize } from './button';
+import Button, { ButtonProps } from './button';
 
 const defaultProps = {
   onClick: jest.fn(),
 };
 
 const testProps: ButtonProps = {
-  btnType: ButtonType.Primary,
-  size: ButtonSize.Large,
+  btnType: 'primary',
+  size: 'lg',
   className: 'testClass',
 };
 
@@ -26,8 +26,8 @@ describe('test Button component', () => {
     expect(element).toHaveClass('btn btn-default');
     expect(element.disabled).toBeFalsy();
     // 检查方法是否被调用
-    // fireEvent.click(element);
-    // expect(defaultProps.onClick).toHaveBeenCalled();
+    fireEvent.click(element);
+    expect(defaultProps.onClick).toHaveBeenCalled();
   });
   it('should render the correct component based on different props', () => {
     const wrapper = render(<Button {...testProps}>Ok</Button>);
@@ -38,7 +38,7 @@ describe('test Button component', () => {
   });
   it('should render a link when btnType equals link and href is provied', () => {
     const wrapper = render(
-      <Button btnType={ButtonType.Link} href="www.baidu.com">
+      <Button btnType="link" href="www.baidu.com">
         Link
       </Button>
     );
