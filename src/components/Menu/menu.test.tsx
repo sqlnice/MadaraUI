@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, RenderResult, fireEvent, cleanup, waitFor } from '@testing-library/react';
-import Menu, { MenuProps } from './menu';
+import Menu, { IMenuProps } from './menu';
 import MenuItem from './menuItem';
 import SubMenu from './subMenu';
 jest.mock('../Icon/icon', () => {
@@ -16,18 +16,18 @@ jest.mock('react-transition-group', () => {
   };
 });
 
-const testProps: MenuProps = {
+const testProps: IMenuProps = {
   defaultIndex: '0',
   onSelect: jest.fn(),
   className: 'test',
 };
-const testVerProps: MenuProps = {
+const testVerProps: IMenuProps = {
   defaultIndex: '0',
   mode: 'vertical',
   defaultOpenSubMenus: ['4'],
 };
 
-const generateMenu = (props: MenuProps) => {
+const generateMenu = (props: IMenuProps) => {
   return (
     <Menu {...props}>
       <MenuItem>active</MenuItem>
