@@ -1,8 +1,9 @@
 import React, { FunctionComponentElement, useContext, useState } from 'react';
 import classNames from 'classnames';
+import Transition from '../Transition/transition';
 import { MENUITEM_DISPLAYNAME, IMenuItemProps } from './menuItem';
 import { MenuContext } from './menu';
-
+import Icon from '../Icon/icon';
 export interface ISubMenuProps {
   index?: string;
   title: string;
@@ -66,13 +67,18 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, children, className })
         console.error('Warning: SubMenu has a child which is not a MenuItem component');
       }
     });
-    return <ul className={subMenuClasses}>{childrenComponent}</ul>;
+    return (
+      <Transition in={menuOpen} timeout={300} animation="zoom-in-top">
+        <ul className={subMenuClasses}>{childrenComponent}</ul>
+      </Transition>
+    );
   };
 
   return (
     <li key={index} className={calsses} {...hoverEvents}>
       <div className="submenu-title" {...clickEvents}>
         {title}
+        <Icon icon="angle-down" className="arrow-icon" />
       </div>
       {renderChildren()}
     </li>

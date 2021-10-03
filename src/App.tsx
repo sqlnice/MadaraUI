@@ -22,7 +22,6 @@ function App() {
         <Button disabled>Disabled Button</Button>
         <Menu
           defaultIndex="0"
-          mode="vertical"
           defaultOpenSubMenus={['2']}
           onSelect={(index) => {
             console.log(index);
