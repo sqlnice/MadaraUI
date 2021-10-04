@@ -37,7 +37,7 @@ const inputWithSize = () => (
 const inputWithPad = () => (
   <>
     <Input style={defaultStyle} placeholder="prepend input" prepend="https://"></Input>
-    <Input style={defaultStyle} placeholder="icon input" append=".com"></Input>
+    <Input style={defaultStyle} placeholder="append input" append=".com"></Input>
   </>
 );
 storiesOf('Input coponent', module)
