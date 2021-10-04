@@ -3,10 +3,7 @@ import Button from './components/Button/button';
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import Icon from './components/Icon/icon';
-library.add(fas);
 function App() {
   return (
     <div className="App">

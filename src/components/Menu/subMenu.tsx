@@ -5,12 +5,15 @@ import { MENUITEM_DISPLAYNAME, IMenuItemProps } from './menuItem';
 import { MenuContext } from './menu';
 import Icon from '../Icon/icon';
 export interface ISubMenuProps {
+  /**  */
   index?: string;
+  /** 	下拉菜单选项的文字 */
   title: string;
+  /** 下拉菜单选型的扩展类名 */
   className?: string;
 }
 
-const SubMenu: React.FC<ISubMenuProps> = ({ index, title, children, className }) => {
+export const SubMenu: React.FC<ISubMenuProps> = ({ index, title, children, className }) => {
   const context = useContext(MenuContext);
   const openedSubMenus = context.defaultOpenSubMenus as Array<string>;
   const isOpened = index && context.mode === 'vertical' ? openedSubMenus.includes(index) : false;

@@ -6,11 +6,15 @@ type MenuMode = 'horizontal' | 'vertical';
 type selectCallBack = (selectedIndex: string) => void;
 
 export interface IMenuProps {
+  /** 默认 active 的菜单项的索引值 */
   defaultIndex?: string;
   className?: string;
+  /** 菜单类型 横向或者纵向 */
   mode?: MenuMode;
   style?: React.CSSProperties;
+  /** 点击菜单项触发的回掉函数 */
   onSelect?: selectCallBack;
+  /** 设置子菜单的默认打开 只在纵向模式下生效 */
   defaultOpenSubMenus?: string[];
 }
 
@@ -26,7 +30,16 @@ export const MenuContext = createContext<IMenuContext>({
   defaultOpenSubMenus: [],
 });
 
-const Menu: React.FC<IMenuProps> = (props) => {
+/**
+ * 导航功能菜单。支持横向纵向两种模式，支持下拉菜单
+ * ### 引用方法
+ *
+ * ~~~js
+ * import { Menu } from 'ma-ui'
+ * // 然后可以使用 Menu.Item 和 Menu.Submenu 访问选项和子下拉菜单组件
+ * ~~~
+ */
+export const Menu: React.FC<IMenuProps> = (props) => {
   const { defaultIndex, className, mode, style, children, onSelect, defaultOpenSubMenus } = props;
   const [currentActive, setActive] = useState(defaultIndex || '0');
 

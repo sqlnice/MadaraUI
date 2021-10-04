@@ -4,11 +4,14 @@ import { MenuContext } from './menu';
 
 export interface IMenuItemProps {
   index?: string;
+  /** 选项是否被禁用 */
   disabled?: boolean;
+  /** 选项扩展的 className */
   className?: string;
+  /** 选项的自定义 style */
   style?: React.CSSProperties;
 }
-const MenuItem: React.FC<IMenuItemProps> = (props) => {
+export const MenuItem: React.FC<IMenuItemProps> = (props) => {
   const { index, disabled, className, style, children } = props;
   const context = useContext(MenuContext);
 
