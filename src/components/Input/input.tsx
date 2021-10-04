@@ -6,7 +6,7 @@ import Icon from '../Icon/icon';
 type InputSize = 'lg' | 'sm';
 
 // Omit 忽略接口中的一个值
-interface IInputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
+export interface IInputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
   /** 是否禁用 */
   disabled?: boolean;
   /** 尺寸 */
