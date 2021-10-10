@@ -1,8 +1,7 @@
 import React, { ChangeEvent, FC, useRef, useState } from 'react';
 import axios from 'axios';
-import Button from '../Button/button';
 import UploadList from './uploadList';
-
+import Dragger from './dragger';
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error';
 
 export interface IUploadFile {
@@ -183,10 +182,8 @@ export const Upload: FC<IUploadProps> = (props) => {
   };
 
   return (
-    <div className="ma-upload-component">
-      <Button btnType="primary" onClick={handleClick}>
-        {children}
-      </Button>
+    <div className="ma-upload-component" onClick={handleClick}>
+      {drag ? <Dragger onFile={(files) => uploadFiles(files)}>{children}</Dragger> : children}
       <input
         ref={fileInput}
         onChange={handleFileChange}
