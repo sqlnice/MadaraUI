@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC, useRef, useState } from 'react';
 import classNames from 'classnames';
 import axios from 'axios';
 import Button from '../Button/button';
+import UploadList from './uploadList';
 
 export type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error';
 
@@ -65,10 +66,10 @@ export interface IUploadProps {
  * ~~~
  */
 export const Upload: FC<IUploadProps> = (props) => {
-  const { action, beforeUpload, onProgress, onSuccess, onError, onChange, children } = props;
+  const { action, defaultFileList, beforeUpload, onProgress, onSuccess, onError, onChange, onRemove, children } = props;
 
   const fileInput = useRef<HTMLInputElement>(null);
-  const [fileList, setFileList] = useState<IUploadFile[]>([]);
+  const [fileList, setFileList] = useState<IUploadFile[]>(defaultFileList || []);
   const updateFileList = (updateFile: IUploadFile, updateObj: Partial<IUploadFile>) => {
     setFileList((preList) => {
       return preList.map((file) => {
@@ -131,6 +132,16 @@ export const Upload: FC<IUploadProps> = (props) => {
         onChange && onChange(file);
       });
   };
+
+  const handleRemove = (file: IUploadFile) => {
+    setFileList((prevList) => {
+      return prevList.filter((item) => item.uid !== file.uid);
+    });
+    if (onRemove) {
+      onRemove(file);
+    }
+  };
+
   const uploadFiles = (files: FileList) => {
     const postFiles = Array.from(files);
     postFiles.forEach((file) => {
@@ -161,6 +172,7 @@ export const Upload: FC<IUploadProps> = (props) => {
         type="file"
         style={{ display: 'none' }}
       />
+      <UploadList fileList={fileList} onRemove={handleRemove} />
     </div>
   );
 };
