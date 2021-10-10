@@ -182,17 +182,30 @@ export const Upload: FC<IUploadProps> = (props) => {
   };
 
   return (
-    <div className="ma-upload-component" onClick={handleClick}>
-      {drag ? <Dragger onFile={(files) => uploadFiles(files)}>{children}</Dragger> : children}
-      <input
-        ref={fileInput}
-        onChange={handleFileChange}
-        className="ma-upload-input"
-        type="file"
-        style={{ display: 'none' }}
-        accept={accept}
-        multiple={multiple}
-      />
+    <div className="ma-upload-component">
+      <div className="ma-upload-input" style={{ display: 'inline-block' }} onClick={handleClick}>
+        {drag ? (
+          <Dragger
+            onFile={(files) => {
+              uploadFiles(files);
+            }}
+          >
+            {children}
+          </Dragger>
+        ) : (
+          children
+        )}
+        <input
+          className="ma-file-input"
+          style={{ display: 'none' }}
+          ref={fileInput}
+          onChange={handleFileChange}
+          type="file"
+          accept={accept}
+          multiple={multiple}
+        />
+      </div>
+
       <UploadList fileList={fileList} onRemove={handleRemove} />
     </div>
   );
