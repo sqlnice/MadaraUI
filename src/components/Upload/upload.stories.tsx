@@ -75,7 +75,25 @@ const defaultFileListUpload = () => {
   );
 };
 
+const setUploadHeaders = () => {
+  return (
+    <Upload action="https://www.mocky.io/v2/5cc8019d300000980a055e76" headers={{ 'X-Powered-By': 'madara' }}>
+      自定义headers
+    </Upload>
+  );
+};
+
+const limitUploadOption = () => {
+  return (
+    <Upload action="https://www.mocky.io/v2/5cc8019d300000980a055e76" accept=".jpg" multiple>
+      限制上传选项(只可选择.jpg文件)
+    </Upload>
+  );
+};
+
 storiesOf('Upload component', module)
   .add('Upload', SimpleUpload)
   .add('上传前检测文件', checkFileUpload)
-  .add('默认的文件列表', defaultFileListUpload);
+  .add('默认的文件列表', defaultFileListUpload)
+  .add('自定义headers', setUploadHeaders)
+  .add('限制上传选项', limitUploadOption);

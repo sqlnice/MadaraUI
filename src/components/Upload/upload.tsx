@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FC, useRef, useState } from 'react';
-import classNames from 'classnames';
 import axios from 'axios';
 import Button from '../Button/button';
 import UploadList from './uploadList';
@@ -66,7 +65,24 @@ export interface IUploadProps {
  * ~~~
  */
 export const Upload: FC<IUploadProps> = (props) => {
-  const { action, defaultFileList, beforeUpload, onProgress, onSuccess, onError, onChange, onRemove, children } = props;
+  const {
+    action,
+    defaultFileList,
+    beforeUpload,
+    onProgress,
+    onSuccess,
+    onError,
+    onChange,
+    onRemove,
+    headers,
+    name,
+    data,
+    withCredentials,
+    accept,
+    multiple,
+    children,
+    drag,
+  } = props;
 
   const fileInput = useRef<HTMLInputElement>(null);
   const [fileList, setFileList] = useState<IUploadFile[]>(defaultFileList || []);
@@ -83,9 +99,7 @@ export const Upload: FC<IUploadProps> = (props) => {
   };
 
   const handleClick = () => {
-    if (fileInput.current) {
-      fileInput.current.click();
-    }
+    fileInput.current && fileInput.current.click();
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -104,13 +118,23 @@ export const Upload: FC<IUploadProps> = (props) => {
       percent: 0,
       raw: file,
     };
+    setFileList((prevList) => {
+      return [_file, ...prevList];
+    });
     const formData = new FormData();
-    formData.append(file.name, file);
+    formData.append(name || 'file', file);
+    if (data) {
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
+      });
+    }
     axios
       .post(action, formData, {
         headers: {
+          ...headers,
           'Context-Type': 'multipart/form-data',
         },
+        withCredentials,
         // 监视上传进度
         onUploadProgress: (e) => {
           const percentage = Math.round((e.loaded * 100) / e.total) || 0;
@@ -137,9 +161,7 @@ export const Upload: FC<IUploadProps> = (props) => {
     setFileList((prevList) => {
       return prevList.filter((item) => item.uid !== file.uid);
     });
-    if (onRemove) {
-      onRemove(file);
-    }
+    onRemove && onRemove(file);
   };
 
   const uploadFiles = (files: FileList) => {
@@ -171,6 +193,8 @@ export const Upload: FC<IUploadProps> = (props) => {
         className="ma-upload-input"
         type="file"
         style={{ display: 'none' }}
+        accept={accept}
+        multiple={multiple}
       />
       <UploadList fileList={fileList} onRemove={handleRemove} />
     </div>
