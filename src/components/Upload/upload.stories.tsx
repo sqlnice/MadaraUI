@@ -6,11 +6,13 @@ import Upload, { IUploadFile } from './upload';
 const SimpleUpload = () => {
   return (
     <Upload
-      action="https://jsonplaceholder.typicode.com/posts/"
+      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       onProgress={action('progress')}
       onSuccess={action('success')}
       onError={action('error')}
-    ></Upload>
+    >
+      Upload File
+    </Upload>
   );
 };
 
@@ -32,7 +34,7 @@ const checkFileUpload = () => {
   return (
     <>
       <Upload
-        action="https://jsonplaceholder.typicode.com/posts/"
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         beforeUpload={checkFileSize}
         onProgress={action('progress')}
         onSuccess={action('success')}
@@ -41,7 +43,7 @@ const checkFileUpload = () => {
         Check File Size
       </Upload>
       <Upload
-        action="https://jsonplaceholder.typicode.com/posts/"
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         beforeUpload={filePromise}
         onProgress={action('progress')}
         onSuccess={action('success')}
@@ -61,7 +63,7 @@ const defaultFileListUpload = () => {
   ];
   return (
     <Upload
-      action="https://jsonplaceholder.typicode.com/posts/"
+      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       onProgress={action('progress')}
       onSuccess={action('success')}
       onError={action('error')}
