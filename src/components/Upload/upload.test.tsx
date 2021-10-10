@@ -1,10 +1,11 @@
 import '@testing-library/jest-dom/extend-expect';
 import axios from 'axios';
-import { render, RenderResult, fireEvent, waitFor, createEvent } from '@testing-library/react';
+import { render, RenderResult, fireEvent, waitFor } from '@testing-library/react';
 
 import { Upload, IUploadProps } from './upload';
 
 jest.mock('../Icon/icon', () => {
+  // @ts-ignore
   return ({ icon, onClick }) => {
     return <span onClick={onClick}>{icon}</span>;
   };
