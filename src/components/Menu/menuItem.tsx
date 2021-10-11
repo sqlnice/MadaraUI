@@ -25,9 +25,9 @@ export const MenuItem: React.FC<IMenuItemProps> = (props) => {
     }
   };
   return (
-    <ul className={classes} style={style} onClick={handleClick}>
+    <li className={classes} style={style} onClick={handleClick}>
       {children}
-    </ul>
+    </li>
   );
 };
 
