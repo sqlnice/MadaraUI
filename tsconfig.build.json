@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "build", // 输出文件夹
+    "module": "esnext", // 生成代码的模板标准 'CommonJS'/'Umd' 等
+    "target": "ES5", // 目标语言的版本 (会帮你自动 polyfill)
+    "declaration": true, // 是否生成 tsx 中的声明文件
+    "moduleResolution": "node", // 可解析import React from 'react'，否则只能解析 import from './*'
+    "jsx": "react", // 在 .tsx 中支持 JSX
+    "allowSyntheticDefaultImports": true // 允许从没有设置默认导出的模块中默认导入
+  },
+  "include": ["src/components", "src/styles", "src/index.tsx"],
+  "exclude": ["src/**/*.stories.tsx", "src/**/*.test.tsx"]
+}

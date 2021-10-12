@@ -60,7 +60,7 @@ export interface IUploadProps {
  * ### 引用方法
  *
  * ~~~js
- * import { Upload} from 'vikingship-ui'
+ * import { Upload} from 'ma-ui'
  * ~~~
  */
 export const Upload: FC<IUploadProps> = (props) => {
