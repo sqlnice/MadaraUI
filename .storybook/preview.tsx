@@ -1,6 +1,6 @@
 import React from 'react';
 import { withInfo } from '@storybook/addon-info';
-import { addDecorator, addParameters } from '@storybook/react';
+import { addDecorator, addParameters, configure } from '@storybook/react';
 // 全局样式文件
 import '../src/styles/index.scss';
 export const parameters = {
@@ -32,3 +32,12 @@ addParameters({
     header: false,
   },
 });
+
+const loaderFn = () => {
+  const allExports = [require('../src/welcome.stories')];
+  const req = require.context('../src/components', true, /\.stories\.tsx$/);
+  req.keys().forEach((file) => allExports.push(req(file)));
+  return allExports;
+};
+
+configure(loaderFn, module);
