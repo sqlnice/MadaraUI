@@ -40,7 +40,7 @@
     "test-nowatch": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook -s public -o docs",
     "prepublishOnly": "npm run test:nowatch && npm run lint && npm run build"
   },
   "husky": {
