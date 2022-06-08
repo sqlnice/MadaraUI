@@ -1,0 +1,24 @@
+.avatar {
+  display: inline-block;
+  background: $gray-200;
+  text-align: center;
+  overflow: hidden;
+}
+
+.avatar-lg {
+  @include width-height($avatar-size-lg, $avatar-size-lg);
+  line-height: $avatar-size-lg;
+}
+.avatar-sm {
+  @include width-height($avatar-size-sm, $avatar-size-sm);
+  line-height: $avatar-size-sm;
+}
+.avatar-circle {
+  border-radius: $avatar-circle-border-radius;
+}
+.avatar-square {
+  border-radius: $avatar-square-border-radius;
+}
+.avatar-icon {
+  font-size: 18px;
+}

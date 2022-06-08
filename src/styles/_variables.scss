@@ -324,3 +324,9 @@ $tabs-label-active-box-shadow: inset 0 -1px 0 rgba($white, 0.15), 1px -1px 1px r
 
 $tabs-content-padding-y: 0.5rem !default;
 $tabs-content-padding-x: 1rem !default;
+
+// avatar
+$avatar-size-lg: 50px !default;
+$avatar-size-sm: 28px !default;
+$avatar-square-border-radius: $border-radius;
+$avatar-circle-border-radius: 50%;

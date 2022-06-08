@@ -1,3 +1,11 @@
+// 混入宽高
+// 使用  @include width-height($avatar-size-lg, $avatar-size-lg);
+
+@mixin width-height($width, $height) {
+  width: $width;
+  height: $height;
+}
+
 @mixin button-size($padding-y, $padding-x, $font-size, $border-raduis) {
   padding: $padding-y $padding-x;
   font-size: $font-size;
